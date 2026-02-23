@@ -1,0 +1,110 @@
+{
+  "_comment": "Sanitized OpenClaw config. Replace all YOUR_* values with real keys.",
+  
+  "auth": {
+    "profiles": {
+      "anthropic:openclaw": {
+        "provider": "anthropic",
+        "mode": "token"
+      }
+    }
+  },
+
+  "agents": {
+    "defaults": {
+      "workspace": "/home/youruser/.openclaw/workspace",
+
+      "compaction": {
+        "mode": "safeguard",
+        "_comment_memoryFlush": "Auto-saves important context to disk BEFORE compaction compresses the context window. This is the single most important config for memory persistence.",
+        "memoryFlush": {
+          "enabled": true,
+          "softThresholdTokens": 4000
+        }
+      },
+
+      "_comment_memorySearch": "Hybrid search combines keyword matching (BM25) with vector embeddings. Much better than vectors alone for finding exact names, numbers, and code symbols.",
+      "memorySearch": {
+        "cache": {
+          "enabled": true,
+          "maxEntries": 50000
+        },
+        "query": {
+          "hybrid": {
+            "enabled": true,
+            "vectorWeight": 0.7,
+            "textWeight": 0.3,
+            "candidateMultiplier": 4,
+            "_comment_mmr": "Reduces redundant/duplicate snippets in search results",
+            "mmr": {
+              "enabled": true,
+              "lambda": 0.7
+            },
+            "_comment_temporalDecay": "Recent notes rank higher. 30-day half-life means notes from a month ago get 50% score, 3 months ago ~12%",
+            "temporalDecay": {
+              "enabled": true,
+              "halfLifeDays": 30
+            }
+          }
+        }
+      },
+
+      "thinkingDefault": "xhigh",
+      "maxConcurrent": 4,
+      "subagents": {
+        "maxConcurrent": 8
+      }
+    }
+  },
+
+  "tools": {
+    "web": {
+      "search": {
+        "enabled": true,
+        "provider": "brave",
+        "apiKey": "YOUR_BRAVE_SEARCH_API_KEY"
+      }
+    }
+  },
+
+  "channels": {
+    "_comment": "Configure your messaging channels. You can use Telegram, Slack, Discord, etc.",
+    "telegram": {
+      "enabled": true,
+      "dmPolicy": "pairing",
+      "botToken": "YOUR_TELEGRAM_BOT_TOKEN"
+    },
+    "slack": {
+      "mode": "socket",
+      "enabled": true,
+      "botToken": "YOUR_SLACK_BOT_TOKEN",
+      "appToken": "YOUR_SLACK_APP_TOKEN",
+      "dmPolicy": "pairing",
+      "dm": {
+        "enabled": true
+      }
+    }
+  },
+
+  "gateway": {
+    "port": 18789,
+    "mode": "local",
+    "bind": "loopback",
+    "auth": {
+      "mode": "token",
+      "token": "YOUR_GATEWAY_AUTH_TOKEN"
+    }
+  },
+
+  "skills": {
+    "install": {
+      "nodeManager": "npm"
+    },
+    "entries": {
+      "_comment": "Add API keys for skills you install",
+      "sag": {
+        "apiKey": "YOUR_ELEVENLABS_API_KEY"
+      }
+    }
+  }
+}
