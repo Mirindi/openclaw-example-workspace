@@ -45,6 +45,7 @@ Using this system across three sprints over ~8 days on a WhatsApp commerce platf
 | `learnings/LEARNINGS.md` | One-liner rules from mistakes (this compounds!) |
 | `memory/example-day.md` | Example daily log |
 | `openclaw-config-example.json` | Sanitized OpenClaw config with comments |
+| `SECURITY-SETUP-GUIDE.md` | Security-first setup guide for fresh Mac installs |
 
 ## Key Concepts
 
@@ -72,14 +73,21 @@ Every ~30 minutes, the agent proactively:
 ### LEARNINGS.md (Most Underrated File)
 Every mistake becomes a one-line rule. These compound over weeks into a personal operations manual built from the agent's own failures.
 
+## Security
+
+**New to OpenClaw? Start here:** [`SECURITY-SETUP-GUIDE.md`](SECURITY-SETUP-GUIDE.md) — a complete security-first setup guide for installing OpenClaw on a fresh Mac. Covers disk encryption, credential management, network hardening, and ongoing hygiene.
+
+The short version: **FileVault + encrypted secrets + keep the gateway on localhost.** Do those three things and you're ahead of 95% of installations.
+
 ## Setup
 
-1. Install [OpenClaw](https://openclaw.ai)
-2. Copy these files to `~/.openclaw/workspace/`
-3. Edit `USER.md` with your details
-4. Edit `SOUL.md` with your preferred agent personality
-5. Edit `TOOLS.md` with your actual tools and CLI references
-6. Start chatting — the agent will evolve the files over time
+1. **Read [`SECURITY-SETUP-GUIDE.md`](SECURITY-SETUP-GUIDE.md) first** — harden the machine before installing anything
+2. Install [OpenClaw](https://openclaw.ai)
+3. Copy these files to `~/.openclaw/workspace/`
+4. Edit `USER.md` with your details
+5. Edit `SOUL.md` with your preferred agent personality
+6. Edit `TOOLS.md` with your actual tools and CLI references
+7. Start chatting — the agent will evolve the files over time
 
 ## Memory Config (in openclaw.json)
 
